@@ -21,8 +21,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
   """Send a message when the command /start is issued."""
   user = update.effective_user
   await update.message.reply_html(
-    rf"Hi {user.mention_html()}!",
-    reply_markup=ForceReply(selective=True),
+    rf"Hi, {user.mention_html()}!",
+    ##reply_markup=ForceReply(selective=True),
   )
 
 
@@ -33,7 +33,12 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
   """Echo the user message."""
-  await update.message.reply_text(update.message.text)
+  mensagem = update.message.text
+  
+  if mensagem == "sujestão" or mensagem == 'sugestão':
+    await update.message.reply_text('Uma sujestão de aposta foi detecada.')
+    
+  """ await update.message.reply_text(mensagem) """
 
 def main() -> None:
   """Start the bot."""
